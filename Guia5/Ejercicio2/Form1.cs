@@ -19,7 +19,8 @@ namespace Ejercicio2
             List<string> Nombres = new List<string> { "Adriana", "Elizabet", "José", "María", "Ernesto", "Sebastian", "Julio", "Ester", "Ariel", "Betiana", "Silvina", "Ana", "Leandro", "Ayelen", "Daniela", "Miguel" };
 
             StringBuilder listado = new StringBuilder();
-            for (int n = 0; n < 10000; n++)
+            int n;
+            for (n = 0; n < 10000; n++)
             {
                 int o = azar.Next(Nombres.Count);
                 int p = azar.Next(Apellidos.Count);
@@ -28,6 +29,7 @@ namespace Ejercicio2
             }
 
             lsbResultado.Items.AddRange(listado.ToString().Split("\n"));
+            lsbResultado.Items.Add($"Cantidad:{n}");
         }
 
     }
