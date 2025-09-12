@@ -22,10 +22,10 @@ namespace Ejercicio2
             int n;
             for (n = 0; n < 10000; n++)
             {
-                int o = azar.Next(Nombres.Count);
-                int p = azar.Next(Apellidos.Count);
+                int posNombre = azar.Next(Nombres.Count);
+                int posApellido = azar.Next(Apellidos.Count);
 
-                listado.AppendLine($"{Apellidos[p]}, {Nombres[o]}");
+                listado.AppendLine($"{Apellidos[posApellido]}, {Nombres[posNombre]}");
             }
 
             lsbResultado.Items.AddRange(listado.ToString().Split("\n"));
