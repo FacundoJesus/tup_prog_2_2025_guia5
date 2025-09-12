@@ -17,16 +17,16 @@ namespace Ejercicio1
                 if (char.IsNumber(expresion[i]) == true) {
                     cantNums++;
                 }
+            }
 
-                if (cantNums == expresion.Length)
-                {
-                    textBox2.Text = "Es válido";
+            if (cantNums == expresion.Length)
+            {
+                textBox2.Text = "Es válido";
 
-                }
-                else
-                {
-                    textBox2.Text = "No es válido";
-                }
+            }
+            else
+            {
+                textBox2.Text = "No es válido";
             }
         }
     }
