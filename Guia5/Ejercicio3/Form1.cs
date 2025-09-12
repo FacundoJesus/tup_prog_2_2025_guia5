@@ -9,32 +9,34 @@ namespace Ejercicio3
         {
             InitializeComponent();
         }
+
         
         private void btnImportarXML_Click(object sender, EventArgs e)
         {
+            
             List<Vehiculo> vehiculos = new List<Vehiculo>();
 
-            #region Imprimir vehiculos y multas
-            //lsbResumen.Items.AddRange(vehiculos.ToArray()); //vector de objetos - NO PUEDO LISTA DE STRING tampoco puedo TOSTRING
-
-            Regex regex = new Regex(@""); //Armar la expresion regular
+            #region Importar vehiculos
+            //Armar la expresion regular - El patron
+            Regex regex = new Regex(@"<multa>[\s\S]*?</multa>", RegexOptions.IgnoreCase); 
             Match match = regex.Match(tbXml.Text); // devuelve un objeto ocurrencia
 
+            
             while (match.Success) {
-                
+
                 Vehiculo nuevoVehiculo = new Vehiculo();
 
                 string objectXML = match.Value; // saco el 1er valor de esa ocurrencia
-                if (nuevoVehiculo.Importar(objectXML))
+                if (nuevoVehiculo.Importar(objectXML) == true)
                 {
                     vehiculos.Sort();
                     int idx = vehiculos.BinarySearch(nuevoVehiculo);
                     if (idx > -1)
                     {
-                        //vehiculos[idx].AgregarMulta(nuevoVehiculo.VerMulta(0));
-                        for(int i = 0, i < nuevoVehiculo.CantidadMultas; i++)
+                        
+                        for(int i = 0; i < nuevoVehiculo.CantidadMultas; i++) 
                         {
-                            vehiculos[idx].AgregarMulta(nuevoVehiculo.VerMulta(0));
+                            vehiculos[idx].AgregarMulta(nuevoVehiculo.VerMulta(i));
                         }
                     }
                     else {
@@ -42,12 +44,22 @@ namespace Ejercicio3
                     }  
 
                 }
-                match = match.NextMatch(); // siguiente match - si no devuelve, rompe el bucle
+                // siguiente match - si no devuelve, rompe el bucle
+                match = match.NextMatch(); 
             }
+            #endregion
+
+
+            #region Imprimir vehiculos
+            lsbResumen.Items.Clear();
             foreach(Vehiculo v in vehiculos)
             {
-                lsbResumen.Items.Add(v);
+                lsbResumen.Items.Add(v.ToString().Trim());
             }
+            
+            lsbResumen.Items.Add($"Cantidad de Multas: {vehiculos.Count}");
+            //lsbResumen.Items.Add($"Importe Total: {vehiculos.ImporteTotal}");
+            // o ... lsbResumen.AddRange(vehiculos.ToArray());
             #endregion
         }
     }

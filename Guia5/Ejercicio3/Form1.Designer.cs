@@ -48,7 +48,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 18);
+            label1.Location = new Point(12, 6);
             label1.Name = "label1";
             label1.Size = new Size(31, 15);
             label1.TabIndex = 1;
@@ -57,7 +57,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 213);
+            label2.Location = new Point(12, 201);
             label2.Name = "label2";
             label2.Size = new Size(56, 15);
             label2.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             // tbXml
             // 
-            tbXml.Location = new Point(12, 36);
+            tbXml.Location = new Point(12, 24);
             tbXml.Multiline = true;
             tbXml.Name = "tbXml";
             tbXml.Size = new Size(283, 161);
@@ -75,7 +75,7 @@
             // 
             lsbResumen.FormattingEnabled = true;
             lsbResumen.ItemHeight = 15;
-            lsbResumen.Location = new Point(12, 231);
+            lsbResumen.Location = new Point(12, 219);
             lsbResumen.Name = "lsbResumen";
             lsbResumen.Size = new Size(283, 124);
             lsbResumen.TabIndex = 4;

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace Ejercicio3.Models
 {
@@ -15,21 +18,22 @@ namespace Ejercicio3.Models
             {
                 return listaMultas.Count;
             }
-            set
-            { 
-                CantidadMultas = value;
-            }
         }
 
+        private double total;
         public double ImporteTotal { 
             get
             {
-                double total = 0;
+                total = 0;
                 foreach(Multa m in listaMultas)
                 {
                     total += m.Importe;
                 }
                 return total;
+            }
+            set
+            {
+                total = value;
             }
         }
 
@@ -49,8 +53,7 @@ namespace Ejercicio3.Models
             {
                 multa = listaMultas[idx] as Multa;
             }
-            return multa;
-                
+            return multa;    
         }
 
         public void AgregarMulta(Multa nuevaMulta)
@@ -61,6 +64,28 @@ namespace Ejercicio3.Models
 
         public bool Importar(string xml)
         {
+            Regex regex = new Regex(@"<patente>([\s\w]+?)</patente>", RegexOptions.IgnoreCase);
+            Match matchPatente = regex.Match(xml);
+
+            if (matchPatente.Groups.Count == 2) {                   
+                this.Patente = matchPatente.Groups[1].Value;
+                //Group[0].Value -> Es toda la etiqueta "<patente>ABC123</patente>"
+                //Group[1].Value -> Es unicamente lo que esté dentro "ABC123" 
+                //Group[2].Value -> No hay porque definí solo un grupo entre paréntesis en el regex.
+            }
+            else
+            {
+                return false;
+            }
+
+            //Llamo a Importar Multa. Para ello, debo crear un objeto.
+            Multa nuevamulta = new Multa();
+            AgregarMulta(nuevamulta);
+            if(nuevamulta.Importar(xml) == true) {
+                this.total += nuevamulta.Importe;
+                return true;
+            }
+            return false;
 
         }
 
@@ -77,7 +102,7 @@ namespace Ejercicio3.Models
 
         public override string ToString()
         {
-            return $"Patente: {this.Patente} - Importe Total: ${this.ImporteTotal:f2}";
+            return $"Patente: {this.Patente} - Importe Total: {this.ImporteTotal:c2}";
         }
     }
 }
