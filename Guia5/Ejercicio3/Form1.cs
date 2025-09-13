@@ -21,45 +21,57 @@ namespace Ejercicio3
             Regex regex = new Regex(@"<multa>[\s\S]*?</multa>", RegexOptions.IgnoreCase); 
             Match match = regex.Match(tbXml.Text); // devuelve un objeto ocurrencia
 
-            
+            int cantMultas = 0;
             while (match.Success) {
 
                 Vehiculo nuevoVehiculo = new Vehiculo();
 
                 string objectXML = match.Value; // saco el 1er valor de esa ocurrencia
+
                 if (nuevoVehiculo.Importar(objectXML) == true)
                 {
+                    cantMultas++;
                     vehiculos.Sort();
                     int idx = vehiculos.BinarySearch(nuevoVehiculo);
-                    if (idx > -1)
+                    if (idx > -1) //Si ya existe la patente del auto...
                     {
                         
                         for(int i = 0; i < nuevoVehiculo.CantidadMultas; i++) 
                         {
-                            vehiculos[idx].AgregarMulta(nuevoVehiculo.VerMulta(i));
+                            vehiculos[idx].AgregarMulta(nuevoVehiculo.VerMulta(i)); //Le agrego la multa a ese auto
                         }
+
                     }
-                    else {
+                    else //Si no existe la patente del auto...
+                    { 
                         vehiculos.Add(nuevoVehiculo);
                     }  
 
                 }
-                // siguiente match - si no devuelve, rompe el bucle
-                match = match.NextMatch(); 
+                
+                match = match.NextMatch(); // siguiente match - si no devuelve, rompe el bucle
             }
             #endregion
 
 
+
             #region Imprimir vehiculos
+
             lsbResumen.Items.Clear();
             foreach(Vehiculo v in vehiculos)
             {
                 lsbResumen.Items.Add(v.ToString().Trim());
             }
-            
-            lsbResumen.Items.Add($"Cantidad de Multas: {vehiculos.Count}");
-            //lsbResumen.Items.Add($"Importe Total: {vehiculos.ImporteTotal}");
             // o ... lsbResumen.AddRange(vehiculos.ToArray());
+            double totalRecaudacion = 0;
+            foreach (Vehiculo v in vehiculos)
+            {
+                totalRecaudacion += v.ImporteTotal;
+            }
+            lsbResumen.Items.Add($"Cantidad de Multas: {cantMultas}");
+            lsbResumen.Items.Add($"Importe Global: {totalRecaudacion:c2}");
+
+
             #endregion
         }
     }

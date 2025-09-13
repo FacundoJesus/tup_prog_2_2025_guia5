@@ -38,7 +38,7 @@ namespace Ejercicio3.Models
         }
 
 
-        private List<Multa> listaMultas = new List<Multa>();
+        public List<Multa> listaMultas = new List<Multa>();
 
         public Vehiculo() { }
         public Vehiculo(string patente)
