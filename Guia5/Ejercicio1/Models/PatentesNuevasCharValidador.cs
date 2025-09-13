@@ -39,6 +39,9 @@ namespace Ejercicio1.Models
                 }
                 else
                 if()
+                {
+
+                }
             }
 
         }
