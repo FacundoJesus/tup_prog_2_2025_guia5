@@ -52,6 +52,7 @@
             btnRegex.TabIndex = 1;
             btnRegex.Text = "Probar ejemplos Regex";
             btnRegex.UseVisualStyleBackColor = true;
+            btnRegex.Click += btnRegex_Click;
             // 
             // lsbChar
             // 
@@ -59,7 +60,7 @@
             lsbChar.ItemHeight = 15;
             lsbChar.Location = new Point(12, 75);
             lsbChar.Name = "lsbChar";
-            lsbChar.Size = new Size(383, 409);
+            lsbChar.Size = new Size(383, 454);
             lsbChar.TabIndex = 2;
             // 
             // lsbRegex
@@ -68,14 +69,14 @@
             lsbRegex.ItemHeight = 15;
             lsbRegex.Location = new Point(404, 75);
             lsbRegex.Name = "lsbRegex";
-            lsbRegex.Size = new Size(383, 409);
+            lsbRegex.Size = new Size(383, 454);
             lsbRegex.TabIndex = 3;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(799, 491);
+            ClientSize = new Size(799, 548);
             Controls.Add(lsbRegex);
             Controls.Add(lsbChar);
             Controls.Add(btnRegex);
@@ -83,6 +84,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ejercicio1";
+            Load += Form1_Load;
             ResumeLayout(false);
         }
 
