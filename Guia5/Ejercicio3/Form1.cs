@@ -63,6 +63,8 @@ namespace Ejercicio3
                 lsbResumen.Items.Add(v.ToString().Trim());
             }
             // o ... lsbResumen.AddRange(vehiculos.ToArray());
+
+
             double totalRecaudacion = 0;
             foreach (Vehiculo v in vehiculos)
             {
