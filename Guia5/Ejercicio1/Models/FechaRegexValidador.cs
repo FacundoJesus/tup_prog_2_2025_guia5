@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -8,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Ejercicio1.Models
 {
-    public class PatentesViejasRegexValidador:PatentesViejasCharValidador
+    public class FechaRegexValidador:FechaCharValidador
     {
-        public PatentesViejasRegexValidador(string expresion):base(expresion) {}
+        public FechaRegexValidador(string expresion):base(expresion) { }
 
-        //Ej correcto: ABC 123
+        //Ej.Correcto: 23/1/2024 o 23/01/2024
 
         public override bool Validar()
         {
-            Regex regex = new Regex(@"^[A-Za-z]{3} \d{3}$");
+            Regex regex = new Regex(@"^\d{2}/\d{1,2}/\d{4}$");
             Match match = regex.Match(this.expresion);
             if (match.Success) {
                 return true;
@@ -25,4 +24,3 @@ namespace Ejercicio1.Models
         }
     }
 }
-

@@ -14,7 +14,7 @@ namespace Ejercicio1
         }
 
         List<string> listaTelefonos = new List<string>() { "2324-2456556", "343-4817427", "2324-245a556", "343–-4817427", "343–-4817427-34", "2324-a-2456556" };
-        List<string> listaPatentesViejas = new List<string> { "ABC 123", "ABC123", "123 ABC", "ABC 1 123", "ABC 123 1", "ABC A 123", "ABC A 123 B" };
+        List<string> listaPatentesViejas = new List<string> { "ABC 123", "abc 456","ABC123", "123 ABC", "ABC 1 123", "ABC 123 1", "ABC A 123", "ABC A 123 B" };
         List<string> listaPatentesNuevas = new List<string> { "AB 1234 CD", "AB 1234 CDC", "ABC 1234 CD", "ABC 123 CD" };
         List<string> listaCuits = new List<string> { "20-28464555-2", "20-40158729-3", "20-284645535-2" };
         List<string> listaFechas = new List<string> { "23/1/2024", "23/01/2024", "23-01-2024" };
@@ -69,6 +69,8 @@ namespace Ejercicio1
             #endregion
         }
 
+
+
         private void btnRegex_Click(object sender, EventArgs e)
         {
             lsbRegex.Items.Clear();
@@ -82,11 +84,38 @@ namespace Ejercicio1
             #endregion
 
             #region VALIDACION PATENTES VIEJAS CON REGEX
-            lsbRegex.Items.Add("VALIDACIÓN DE TELÉFONOS CON REGEX:");
+            lsbRegex.Items.Add("VALIDACIÓN DE PATENTES VIEJAS CON REGEX:");
             foreach (string patVieja in listaPatentesViejas)
             {
                 PatentesViejasCharValidador validarPatenteVieja = new PatentesViejasCharValidador(patVieja);
                 lsbRegex.Items.Add($"Patente Vieja: {patVieja} - {validarPatenteVieja.VerMensaje()}");
+            }
+            #endregion
+
+            #region VALIDACION PATENTES NUEVAS CON REGEX
+            lsbRegex.Items.Add("VALIDACIÓN DE PATENTES NUEVAS CON REGEX:");
+            foreach (string patNueva in listaPatentesNuevas)
+            {
+                PatenteNuevaRegexValidador validarPatenteNueva = new PatenteNuevaRegexValidador(patNueva);
+                lsbRegex.Items.Add($"Patente Vieja: {patNueva} - {validarPatenteNueva.VerMensaje()}");
+            }
+            #endregion
+
+            #region VALIDACION PATENTES NUEVAS CON REGEX
+            lsbRegex.Items.Add("VALIDACIÓN DE CUITS CON REGEX:");
+            foreach (string cuit in listaCuits)
+            {
+                CuitRegexValidador validarCuit = new CuitRegexValidador(cuit);
+                lsbRegex.Items.Add($"Cuit: {cuit} - {validarCuit.VerMensaje()}");              
+            }
+            #endregion
+
+            #region VALIDACION FECHAS CON REGEX
+            lsbRegex.Items.Add("VALIDACIÓN DE FECHAS CON REGEX:");
+            foreach (string fecha in listaFechas)
+            {
+                FechaRegexValidador validarFecha = new FechaRegexValidador(fecha);
+                lsbRegex.Items.Add($"Fecha: {fecha} - {validarFecha.VerMensaje()}");
             }
             #endregion
         }
