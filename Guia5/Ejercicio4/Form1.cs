@@ -17,7 +17,6 @@ namespace Ejercicio4
         private void btnBuscar_Click(object sender, EventArgs e)
         {
 
-
             if (tbPalabra.Text != "")
             {
                 // 1. Inicializar frase
@@ -42,7 +41,6 @@ namespace Ejercicio4
             {
                 MessageBox.Show("Debes ingresar una palabra a buscar");
             }
-
 
         }
 
