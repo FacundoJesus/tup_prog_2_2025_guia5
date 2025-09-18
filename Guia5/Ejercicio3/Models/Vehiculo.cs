@@ -69,9 +69,9 @@ namespace Ejercicio3.Models
 
             if (matchPatente.Groups.Count == 2) {                   
                 this.Patente = matchPatente.Groups[1].Value;
-                //Group[0].Value -> Es toda la etiqueta "<patente>ABC123</patente>"
-                //Group[1].Value -> Es unicamente lo que esté dentro "ABC123" 
-                //Group[2].Value -> No hay porque definí solo un grupo entre paréntesis en el regex.
+                //Groups.Count == 0 -> Es toda la etiqueta "<patente>ABC123</patente>"
+                //Groups.Count == 1 -> Es unicamente lo que esté dentro "ABC123" 
+                //Groups.Count == 2 -> No hay porque definí solo un grupo entre paréntesis en el regex.
             }
             else
             {

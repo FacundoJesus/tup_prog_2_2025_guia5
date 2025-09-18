@@ -31,7 +31,7 @@ namespace Ejercicio3.Models
         {
             Regex regex = new Regex(@"<importe>([\w\s,]+?)</importe>", RegexOptions.IgnoreCase);
             Match match = regex.Match(xml);
-            if(match.Success)
+            if(match.Success && match.Groups.Count == 2)
             {
                 this.Importe = Convert.ToDouble(match.Groups[1].Value);
                 return true;
